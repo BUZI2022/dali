@@ -1,0 +1,61 @@
+function loadAMapScript(key) {
+    return new Promise((resolve, reject) => {
+        try {
+            if (window.AMap) {
+                resolve(window.AMap);
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = `https://webapi.amap.com/maps?v=2.0&key=92ef9e16b3de60a87fd9ac6c468e2ad8&securityJsCode=203aba412f2779449e4895ad283b9a14`;
+            script.async = true;
+            script.onload = () => resolve(window.AMap);
+            script.onerror = () => reject(new Error('Failed to load AMap SDK'));
+            document.head.appendChild(script);
+        } catch (error) {
+            reportError(error);
+            reject(error);
+        }
+    });
+}
+
+async function initializeMap(container) {
+    try {
+        await loadAMapScript('92ef9e16b3de60a87fd9ac6c468e2ad8');
+        
+        const map = new AMap.Map(container, {
+            center: [100.225668, 25.589449], // 大理古城坐标
+            zoom: 12
+        });
+
+        return map;
+    } catch (error) {
+        reportError(error);
+        return null;
+    }
+}
+
+function addMapMarkers(map, locations) {
+    try {
+        if (!map || !window.AMap) return;
+
+        locations.forEach(location => {
+            const marker = new AMap.Marker({
+                position: location.coordinates,
+                title: location.name
+            });
+
+            const content = `
+                <div class="map-preview">
+                    <img src="${location.previewImage}" alt="${location.name}" />
+                    <div class="location-name">${location.name}</div>
+                </div>
+            `;
+
+            marker.setContent(content);
+            marker.setMap(map);
+        });
+    } catch (error) {
+        reportError(error);
+    }
+}
