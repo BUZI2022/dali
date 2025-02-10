@@ -7,7 +7,7 @@
     justify-content: center;
     background-position: center;
     background-size: cover;
-    background-image: url('https://app.trickle.so/storage/public/images/usr_0c3baa6038000001/54fc5b95-7be4-4a4b-a77e-a33f6cf63773.jpeg');
+    background-image: url('/dali/pic/洱海.jpg');
 }
 
 .header-container, .header-overlay {
