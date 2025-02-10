@@ -1,0 +1,368 @@
+.header-container {
+    position: relative;
+    height: 40vh;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/dali/pic/洱海.jpg');
+}
+
+.header-container, .header-overlay {
+    animation: slideDown 1.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem 3rem;
+    transform-origin: center bottom;
+}
+
+.header-title {
+    font-size: 7rem;
+    color: #000;
+    font-weight: 900;
+    font-family: 'Noto Serif SC', serif;
+    margin-bottom: -0.5rem;
+}
+
+.header-subtitle {
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: 500;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-height: 600px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.photo-grid.expanded {
+    max-height: 2000px;
+}
+
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.photo-grid.expanded .photo-item {
+    animation: fadeInUp 0.5s forwards;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.photo-item:hover .photo-caption {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toggle-photos-button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 2rem 0;
+    padding: 0.75rem 2.5rem;
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #ddd;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-photos-button:hover {
+    background-color: #f8f8f8;
+    border-color: #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.map-container {
+    width: 100%;
+    height: 800px;
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.map-controls {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.map-button {
+    background-color: #fff;
+    color: #333;
+    padding: 0.75rem 2rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Serif SC', serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-button:hover {
+    background-color: #f8f8f8;
+    border-color: #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.map-marker {
+    width: 14px;
+    height: 14px;
+    background-color: #4A90E2;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+    }
+}
+
+.map-marker:hover {
+    transform: scale(1.1);
+}
+
+.map-marker .marker-content {
+    display: none;
+    position: fixed;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%);
+    width: 200px;
+    pointer-events: none;
+    margin-bottom: 12px;
+    z-index: 1000;
+}
+
+.map-marker:hover .marker-content {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.map-marker .map-preview-container {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.map-marker .map-preview {
+    width: 100%;
+    height: 120px;
+    line-height: 0;
+}
+
+.map-marker .map-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.map-marker .location-name {
+    padding: 6px;
+    font-size: 11px;
+    color: #333;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.marker-content::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.map-preview {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.map-marker:hover .map-preview {
+    opacity: 1;
+    visibility: visible;
+}
+
+.map-preview img {
+    max-width: 150px;
+    max-height: 100px;
+    border-radius: 4px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.modal-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    pointer-events: none;
+}
+
+.modal-nav button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.modal-nav button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-close {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001;
+}
