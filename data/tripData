@@ -3,8 +3,8 @@ window.tripData = {
         {
             id: 1,
             name: '洱海风光',
-            thumbnail: './pic/洱海.jpg',
-            fullSize: './pic/洱海.jpg'
+            thumbnail: '/dali/pic/洱海.jpg',
+            fullSize: '/dali/pic/洱海.jpg'
         },
         {
             id: 2,
@@ -42,31 +42,31 @@ window.tripData = {
             id: 1,
             name: '大理古城',
             coordinates: [100.1671, 25.6913],
-            previewImage: './pic/洱海.jpg'
+            previewImage: '/dali/pic/洱海.jpg'
         },
         {
             id: 2,
             name: '感通索道',
             coordinates: [100.1080, 25.7087],
-            previewImage: './pic/洱海.jpg'
+            previewImage: '/dali/pic/洱海.jpg'
         },
         {
             id: 3,
             name: '理想邦',
             coordinates: [100.1480, 25.6980],
-            previewImage: './pic/洱海.jpg'
+            previewImage: '/dali/pic/洱海.jpg'
         },
         {
             id: 4,
             name: '崇邑村',
             coordinates: [100.1450, 25.7150],
-            previewImage: './pic/洱海.jpg'
+            previewImage: '/dali/pic/洱海.jpg'
         },
         {
             id: 5,
             name: '洱海龙湾',
             coordinates: [100.2280, 25.8120],
-            previewImage: './pic/洱海.jpg'
+            previewImage: '/dali/pic/洱海.jpg'
         }
     ]
 };
