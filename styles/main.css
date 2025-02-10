@@ -7,7 +7,7 @@
     justify-content: center;
     background-position: center;
     background-size: cover;
-    background-image: url('/dali/banner/banner.jpg');
+    background-image: url('/dali/pic/洱海.jpg');
 }
 
 .header-container, .header-overlay {
@@ -93,14 +93,14 @@
     animation: fadeInUp 0.5s forwards;
 }
 
-.photo-item img {
+.photo-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.photo-item:hover img {
+.photo-item:hover .photo-thumbnail {
     transform: scale(1.05);
 }
 
@@ -126,10 +126,8 @@
 }
 
 .toggle-photos-button {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 2rem 0;
+    display: block;
+    margin: 2rem auto;
     padding: 0.75rem 2.5rem;
     background-color: #fff;
     color: #333;
@@ -148,37 +146,14 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Map Styles */
 .map-container {
     width: 100%;
-    height: 800px;
-    margin: 0;
-    padding: 0;
+    height: 400px;
+    margin: 2rem 0;
     border-radius: 12px;
     overflow: hidden;
-    position: relative;
-}
-
-.map-controls {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.map-button {
-    background-color: #fff;
-    color: #333;
-    padding: 0.75rem 2rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Noto Serif SC', serif;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.map-button:hover {
-    background-color: #f8f8f8;
-    border-color: #ccc;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .map-marker {
@@ -199,7 +174,7 @@
         box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
     }
     50% {
-        box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+        box-shadow: 0 0 0 6px rgba(74, 144, 226, 0.1);
     }
     100% {
         box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
@@ -207,106 +182,61 @@
 }
 
 .map-marker:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
-.map-marker .marker-content {
-    display: none;
-    position: fixed;
-    left: 50%;
-    bottom: 100%;
-    transform: translateX(-50%);
-    width: 200px;
-    pointer-events: none;
-    margin-bottom: 12px;
-    z-index: 1000;
-}
-
-.map-marker:hover .marker-content {
-    display: block;
-    animation: fadeIn 0.2s ease-out;
-}
-
-.map-marker .map-preview-container {
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.map-marker .map-preview {
-    width: 100%;
-    height: 120px;
-    line-height: 0;
-}
-
-.map-marker .map-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-}
-
-.map-marker .location-name {
-    padding: 6px;
-    font-size: 11px;
-    color: #333;
-    text-align: center;
-    font-family: 'Noto Serif SC', serif;
-    line-height: 1.2;
-    font-weight: 500;
-}
-
-.marker-content::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -6px;
-    transform: translateX(-50%) rotate(45deg);
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
-}
-
-.map-preview {
+.map-preview-container {
     position: absolute;
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     background: white;
     padding: 8px;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    margin-bottom: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    width: 200px;
+    pointer-events: none;
     opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
+    transition: opacity 0.3s ease;
+    margin-bottom: 8px;
 }
 
-.map-marker:hover .map-preview {
+.map-marker:hover .map-preview-container {
     opacity: 1;
-    visibility: visible;
+}
+
+.map-preview {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 4px;
 }
 
 .map-preview img {
-    max-width: 150px;
-    max-height: 100px;
-    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
+.location-name {
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+    font-family: 'Noto Serif SC', serif;
+}
+
+/* Modal Styles */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     z-index: 1000;
 }
 
@@ -318,51 +248,56 @@
 
 .modal-image {
     max-width: 100%;
-    max-height: 85vh;
+    max-height: 90vh;
     object-fit: contain;
 }
 
-.modal-nav {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 2rem;
-    pointer-events: none;
-}
-
-.modal-nav button {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-}
-
-.modal-nav button:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
 .modal-close {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
+    position: absolute;
+    top: -40px;
+    right: -40px;
     background: none;
     border: none;
     color: white;
     font-size: 2rem;
     cursor: pointer;
-    z-index: 1001;
+    padding: 10px;
+}
+
+.modal-prev,
+.modal-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 20px;
+    transition: color 0.3s ease;
+}
+
+.modal-prev:hover,
+.modal-next:hover {
+    color: #4A90E2;
+}
+
+.modal-prev {
+    left: -60px;
+}
+
+.modal-next {
+    right: -60px;
+}
+
+.modal-caption {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
 }
